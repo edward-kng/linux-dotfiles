@@ -1,0 +1,22 @@
+* {
+	background-color: #1E1E1E;
+	text-color: #ffffff;
+	padding: 2px;
+}
+
+element {
+	background-color: #1E1E1E;
+}
+
+element.selected {
+	background-color: #8AB4F8;
+}
+
+element-text.selected {
+	background-color: #8AB4F8;
+	text-color: #343434;
+}
+
+element-icon.selected {
+	background-color: #8AB4F8;	
+}

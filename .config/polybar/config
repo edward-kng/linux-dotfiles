@@ -1,0 +1,107 @@
+# Polybar Config
+
+[colours]
+background = #121212
+active = #8AB4F8
+txt-active = #ffffff
+txt-inactive = #888A85
+urgent = #8600FF
+highlight = #242424
+
+[bar/panel]
+;monitor = ${env:MONITOR:HDMI-1}
+width = 100%
+height = 30
+fixed-center = false
+background = ${colours.background}
+foreground = ${colours.txt-active}
+line-size = 3
+module-margin-left = 0
+module-margin-right = 2
+
+font-0 = Liberation Mono:pixelsize=10
+font-1 = Font Awesome 6 Brands Regular:pixelsize=10
+font-2 = Font Awesome 6 Free Regular:pixelsize=10
+font-3 = Font Awesome 6 Free Solid:pixelsize=10
+
+modules-left = i3
+modules-right = eth wlan date pulseaudio
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+tray-position = right
+tray-padding = 2
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+
+label-mode-foreground = ${colours.txt-active}
+label-mode-background = ${colours.highlight}
+label-mode-underline = ${colours.urgent}
+label-mode-padding = 1
+
+label-focused = %name%
+label-focused-background = ${colours.highlight}
+label-focused-underline= ${colours.active}
+label-focused-padding = 1
+
+label-unfocused = %name%
+label-unfocused-foreground = ${colours.txt-inactive}
+label-unfocused-padding = 1
+label-visible = %name%
+label-visible-background = ${self.label-focused-background}
+label-visible-underline = ${self.label-focused-underline}
+label-visible-padding = ${self.label-focused-padding}
+
+label-urgent = %name%
+label-urgent-foreground = ${colours.txt-active}
+label-urgent-background = ${colours.highlight}
+label-urgent-underline = ${colours.urgent}
+label-urgent-padding = 1
+
+[module/date]
+type = internal/date
+date =  %d.%m.%Y %H:%M:%S
+
+[module/eth]
+type = internal/network
+interface = enp0s31f6
+interval = 3.0
+format-connected-foreground = ${colors.txt-active}
+label-connected =  Connected
+format-disconnected =
+
+[module/wlan]
+type = internal/network
+interface = wlan0
+interval = 3.0
+
+format-connected = <label-connected>
+format-connected-underline = {colours.active}
+label-connected =  Connected: %essid%
+
+format-disconnected =
+
+[module/pulseaudio]
+type = internal/pulseaudio
+format-volume = <label-volume> <bar-volume>
+label-volume =  %percentage%%
+label-muted =  mute
+bar-volume-width = 10
+bar-volume-foreground-0 = ${colours.active}
+bar-volume-gradient = false
+bar-volume-indicator =
+bar-volume-fill = /
+bar-volume-empty = /
+
+[settings]
+screenchange-reload = true
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5
+
